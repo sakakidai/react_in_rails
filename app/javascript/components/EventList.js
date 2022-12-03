@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
+import { Link, NavLink } from 'react-router-dom';
 
 const EventList = (props) => {
   const { events } = props;
@@ -9,18 +10,21 @@ const EventList = (props) => {
 
     return eventArray.map((event) => (
       <li key={event.id}>
-        <Link to={`/events/${event.id}`}>
+        <NavLink to={`/events/${event.id}`}>
           {event.event_date}
           {' - '}
           {event.event_type}
-        </Link>
+        </NavLink>
       </li>
     ));
   };
 
   return (
-    <section>
-      <h2>Events</h2>
+    <section className="eventList">
+      <h2>
+        Events
+        <Link to="/events/new">New Event</Link>
+      </h2>
       <ul>{renderEvents(events)}</ul>
     </section>
   );
